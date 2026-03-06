@@ -1,0 +1,88 @@
+const fs = require("fs");
+const path = require("path");
+
+const serviceFile = path.join(__dirname, "../data/service.json");
+const queryFile = path.join(__dirname, "../data/query.json");
+
+
+// POST API
+exports.addService = (req, res) => {
+  const { name, phone, city, address, service, notes } = req.body;
+
+  if (!name || !phone || !city || !address) {
+    return res.status(400).json({
+      message: "Required fields missing"
+    });
+  }
+
+  const data = {
+    name,
+    phone,
+    city,
+    address,
+    service: service || null,
+    notes: notes || "",
+    createdAt: new Date()
+  };
+
+  if (service) {
+    const fileData = JSON.parse(fs.readFileSync(serviceFile));
+    fileData.services.push(data);
+    fs.writeFileSync(serviceFile, JSON.stringify(fileData, null, 2));
+
+    return res.json({
+      message: "Service request saved",
+      data
+    });
+  } else {
+    const fileData = JSON.parse(fs.readFileSync(queryFile));
+    fileData.queries.push(data);
+    fs.writeFileSync(queryFile, JSON.stringify(fileData, null, 2));
+
+    return res.json({
+      message: "Query saved",
+      data
+    });
+  }
+};
+
+
+
+// GET all services
+exports.getServices = (req, res) => {
+  const fileData = JSON.parse(fs.readFileSync(serviceFile));
+
+  res.json({
+    total: fileData.services.length,
+    services: fileData.services
+  });
+};
+
+
+
+// GET all queries
+exports.getQueries = (req, res) => {
+  const fileData = JSON.parse(fs.readFileSync(queryFile));
+
+  res.json({
+    total: fileData.queries.length,
+    queries: fileData.queries
+  });
+};
+
+
+
+// GET combined data
+exports.getAllData = (req, res) => {
+
+  const serviceData = JSON.parse(fs.readFileSync(serviceFile));
+  const queryData = JSON.parse(fs.readFileSync(queryFile));
+
+  res.json({
+    totalServices: serviceData.services.length,
+    totalQueries: queryData.queries.length,
+    services: serviceData.services,
+    queries: queryData.queries
+  });
+
+};
