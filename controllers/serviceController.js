@@ -5,7 +5,7 @@ const sendWhatsApp = require("../utils/whatsapp");
 const serviceFile = path.join(__dirname, "../data/service.json");
 const queryFile = path.join(__dirname, "../data/query.json");
 
-const ADMIN_NUMBER = "919041664629"; // change to admin number
+const ADMIN_NUMBER = "918299487208"; // change to admin number
 
 
 exports.addService = async (req, res) => {
