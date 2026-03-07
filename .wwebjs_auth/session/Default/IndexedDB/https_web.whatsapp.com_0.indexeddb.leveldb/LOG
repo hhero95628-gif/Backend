@@ -1,0 +1,30 @@
+2026/03/07-20:56:42.956 1f4e09 Reusing MANIFEST /Users/yatinkalra/Desktop/A-one-Backend/.wwebjs_auth/session/Default/IndexedDB/https_web.whatsapp.com_0.indexeddb.leveldb/MANIFEST-000001
+2026/03/07-20:56:42.957 1f4e09 Recovering log #242
+2026/03/07-20:56:42.973 1f4e09 Reusing old log /Users/yatinkalra/Desktop/A-one-Backend/.wwebjs_auth/session/Default/IndexedDB/https_web.whatsapp.com_0.indexeddb.leveldb/000242.log 
+2026/03/07-20:56:50.783 1f4e0b Level-0 table #253: started
+2026/03/07-20:56:50.800 1f4e0b Level-0 table #253: 1168847 bytes OK
+2026/03/07-20:56:50.802 1f4e0b Delete type=0 #242
+2026/03/07-20:56:50.803 1f4e0b Compacting 1@1 + 7@2 files
+2026/03/07-20:56:50.833 1f4e0b Generated table #254@1: 41086 keys, 2195893 bytes
+2026/03/07-20:56:50.842 1f4e0b Level-0 table #257: started
+2026/03/07-20:56:50.853 1f4e0b Level-0 table #257: 1148637 bytes OK
+2026/03/07-20:56:50.855 1f4e0b Delete type=0 #252
+2026/03/07-20:56:50.880 1f4e0b Generated table #255@1: 64548 keys, 2230231 bytes
+2026/03/07-20:56:50.905 1f4e0b Generated table #258@1: 32195 keys, 2195058 bytes
+2026/03/07-20:56:50.910 1f4e0b Level-0 table #261: started
+2026/03/07-20:56:50.920 1f4e0b Level-0 table #261: 1164462 bytes OK
+2026/03/07-20:56:50.922 1f4e0b Delete type=0 #256
+2026/03/07-20:56:50.929 1f4e0b Generated table #259@1: 3493 keys, 2153111 bytes
+2026/03/07-20:56:50.952 1f4e0b Generated table #262@1: 21947 keys, 2203583 bytes
+2026/03/07-20:56:50.984 1f4e0b Generated table #263@1: 33330 keys, 2197271 bytes
+2026/03/07-20:56:51.017 1f4e0b Generated table #264@1: 61917 keys, 1979563 bytes
+2026/03/07-20:56:51.017 1f4e0b Compacted 1@1 + 7@2 files => 15154710 bytes
+2026/03/07-20:56:51.018 1f4e0b compacted to: files[ 2 0 7 0 0 0 0 ]
+2026/03/07-20:56:51.018 1f4e0b Delete type=2 #248
+2026/03/07-20:56:51.018 1f4e0b Delete type=2 #249
+2026/03/07-20:56:51.018 1f4e0b Delete type=2 #247
+2026/03/07-20:56:51.018 1f4e0b Delete type=2 #253
+2026/03/07-20:56:51.018 1f4e0b Delete type=2 #246
+2026/03/07-20:56:51.018 1f4e0b Delete type=2 #250
+2026/03/07-20:56:51.018 1f4e0b Delete type=2 #244
+2026/03/07-20:56:51.018 1f4e0b Delete type=2 #245

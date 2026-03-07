@@ -1,12 +1,14 @@
 const fs = require("fs");
 const path = require("path");
+const sendWhatsApp = require("../utils/whatsapp");
 
 const serviceFile = path.join(__dirname, "../data/service.json");
 const queryFile = path.join(__dirname, "../data/query.json");
 
+const ADMIN_NUMBER = "919041664629"; // change to admin number
 
-// POST API
-exports.addService = (req, res) => {
+
+exports.addService = async (req, res) => {
 
   const { 
     name, 
@@ -45,10 +47,38 @@ exports.addService = (req, res) => {
     createdAt: new Date()
   };
 
+
+  const message = `
+Care Assessment Form
+
+Name: ${name}
+Phone: ${phone}
+City: ${city}
+Address: ${address}
+
+Patient Name: ${patientName || "-"}
+Age: ${age || "-"}
+Weight: ${weight || "-"}
+Gender: ${gender || "-"}
+
+Condition:
+${condition || "-"}
+
+Service Required:
+${service || "General Query"}
+
+Notes:
+${notes || "-"}
+`;
+
+
   if (service) {
+
     const fileData = JSON.parse(fs.readFileSync(serviceFile));
     fileData.services.push(data);
     fs.writeFileSync(serviceFile, JSON.stringify(fileData, null, 2));
+
+    await sendWhatsApp(ADMIN_NUMBER, message);
 
     return res.json({
       message: "Service request saved",
@@ -61,6 +91,8 @@ exports.addService = (req, res) => {
     fileData.queries.push(data);
     fs.writeFileSync(queryFile, JSON.stringify(fileData, null, 2));
 
+    await sendWhatsApp(ADMIN_NUMBER, message);
+
     return res.json({
       message: "Query saved",
       data
@@ -70,31 +102,33 @@ exports.addService = (req, res) => {
 
 
 
-// GET all services
+
 exports.getServices = (req, res) => {
+
   const fileData = JSON.parse(fs.readFileSync(serviceFile));
 
   res.json({
     total: fileData.services.length,
     services: fileData.services
   });
+
 };
 
 
 
-// GET all queries
 exports.getQueries = (req, res) => {
+
   const fileData = JSON.parse(fs.readFileSync(queryFile));
 
   res.json({
     total: fileData.queries.length,
     queries: fileData.queries
   });
+
 };
 
 
 
-// GET combined data
 exports.getAllData = (req, res) => {
 
   const serviceData = JSON.parse(fs.readFileSync(serviceFile));
