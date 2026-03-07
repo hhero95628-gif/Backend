@@ -1,0 +1,16 @@
+{
+  "admins": [
+    {
+      "id": 1,
+      "username": "yatin@983",
+      "password": "GURU_g@786",
+      "role": "superadmin"
+    },
+    {
+      "id": 1772883437405,
+      "username": "admin1",
+      "password": "admin123",
+      "role": "admin"
+    }
+  ]
+}
