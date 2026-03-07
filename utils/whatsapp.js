@@ -1,24 +1,18 @@
 const { Client, LocalAuth } = require("whatsapp-web.js");
-const qrcode = require("qrcode-terminal");
+const qrcode = require("qrcode");
 
 const client = new Client({
   authStrategy: new LocalAuth(),
   puppeteer: {
     headless: true,
-    args: [
-      "--no-sandbox",
-      "--disable-setuid-sandbox",
-      "--disable-dev-shm-usage",
-      "--disable-accelerated-2d-canvas",
-      "--no-first-run",
-      "--no-zygote",
-      "--single-process"
-    ]
+    args: ["--no-sandbox","--disable-setuid-sandbox"]
   }
 });
 
-client.on("qr", (qr) => {
-  qrcode.generate(qr, { small: true });
+client.on("qr", async (qr) => {
+  const qrImage = await qrcode.toDataURL(qr);
+  console.log("Scan this QR:");
+  console.log(qrImage);
 });
 
 client.on("ready", () => {
@@ -26,14 +20,3 @@ client.on("ready", () => {
 });
 
 client.initialize();
-
-const sendWhatsApp = async (number, message) => {
-  try {
-    const chatId = number + "@c.us";
-    await client.sendMessage(chatId, message);
-  } catch (err) {
-    console.log("WhatsApp error:", err);
-  }
-};
-
-module.exports = sendWhatsApp;
