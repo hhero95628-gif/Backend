@@ -7,7 +7,20 @@ const queryFile = path.join(__dirname, "../data/query.json");
 
 // POST API
 exports.addService = (req, res) => {
-  const { name, phone, city, address, service, notes } = req.body;
+
+  const { 
+    name, 
+    phone, 
+    city, 
+    address, 
+    service, 
+    notes,
+    patientName,
+    age,
+    weight,
+    gender,
+    condition
+  } = req.body;
 
   if (!name || !phone || !city || !address) {
     return res.status(400).json({
@@ -22,6 +35,13 @@ exports.addService = (req, res) => {
     address,
     service: service || null,
     notes: notes || "",
+
+    patientName: patientName || null,
+    age: age || null,
+    weight: weight || null,
+    gender: gender || null,
+    condition: condition || null,
+
     createdAt: new Date()
   };
 
@@ -34,7 +54,9 @@ exports.addService = (req, res) => {
       message: "Service request saved",
       data
     });
+
   } else {
+
     const fileData = JSON.parse(fs.readFileSync(queryFile));
     fileData.queries.push(data);
     fs.writeFileSync(queryFile, JSON.stringify(fileData, null, 2));
