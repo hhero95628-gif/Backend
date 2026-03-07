@@ -5,7 +5,7 @@ const client = new Client({
   authStrategy: new LocalAuth(),
   puppeteer: {
     headless: true,
-    args: ["--no-sandbox","--disable-setuid-sandbox"]
+    args: ["--no-sandbox", "--disable-setuid-sandbox"]
   }
 });
 
@@ -20,3 +20,17 @@ client.on("ready", () => {
 });
 
 client.initialize();
+
+
+// Function to send WhatsApp message
+const sendWhatsApp = async (number, message) => {
+  try {
+    const chatId = number + "@c.us";
+    await client.sendMessage(chatId, message);
+    console.log("WhatsApp message sent");
+  } catch (error) {
+    console.error("WhatsApp send error:", error);
+  }
+};
+
+module.exports = sendWhatsApp;
